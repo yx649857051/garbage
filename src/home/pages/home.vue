@@ -89,7 +89,23 @@
                 // console.log("搜索");
                 Toast(this.val);
 
-                this.$store.dispatch('quickSearchRequest', this.val);
+                // this.$store.dispatch('searchRequest', this.val);
+                // this.$store.dispatch('searchByType', 1);
+                // this.$store.dispatch('searchBySort', 1);
+                // this.$store.dispatch('getSearchByRubbish',1);
+                let obj ={
+                    "id":6,
+                    "rname":'手机充电器',
+                    "tname":'可回收物',
+                    "myOption":'干垃圾',
+                    "result":null
+
+                }
+                let str = JSON.stringify(obj);
+                console.log('yx',str);
+                this.$store.dispatch('getTestResult',str);
+                // this.$store.dispatch('quickSearchListRequest');
+                // this.$store.dispatch('test');
             }
 
         },
