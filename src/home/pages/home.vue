@@ -8,6 +8,7 @@
                       @click="chooseCity">{{cityData && cityData.length>0 && cityData[0].cityName}}标准</span>
             </div>
 
+
             <div class="input-div">
                 <div class="input-search">
                     <input class="input" type="text" v-model="val">
@@ -22,14 +23,35 @@
                 </li>
             </ul>
 
-            <ul>
-                <p>分类专题</p>
-                <li v-for="item in homeData.sortList" :key="item.id">
-                    {{item.sname}}
-                    <img :src="item.spic">
-                </li>
-            </ul>
 
+            <div class="classify-div">
+                <p class="classify-title">垃圾分类</p>
+                <ul class="classify-ul">
+
+                    <li class="classify-li" v-for="item in homeData.typeList" :key="item.id">
+
+                        <img class="classify-img" :src="item.tpic"/>
+                        <span>{{item.tname}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="classify-div">
+                <p class="classify-title">分类专题</p>
+                <ul class="classify-ul">
+
+                    <li class="classify-li" v-for="item in homeData.sortList" :key="item.id">
+
+                        <img class="classify-img" :src="item.spic"/>
+                        <span>{{item.sname}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="training-camp">
+                <span>训练营</span>
+                <span>去训练 ></span>
+            </div>
         </div>
 
         <router-view></router-view>
@@ -106,14 +128,18 @@
             }
         }
 
+
         .input-div {
             margin-top: -20px;
             margin-left: 20px;
             margin-right: 20px;
             background: #fff;
+            border: solid 1px #999;
+            border-radius: 10px;
 
             .input-search {
                 width: 100%;
+
 
                 .input {
                     width: 90%;
@@ -127,8 +153,9 @@
         }
 
         .quick-search-ul {
-            margin-top: 20px;
+            padding-top: 20px;
             display: flex;
+            background: #fff;
 
             .quick-search-li {
                 width: 25%;
@@ -143,5 +170,37 @@
             }
         }
     }
+
+    .classify-div {
+        margin-top: 20px;
+        padding-left: 15px;
+        margin-bottom: 10px;
+        background: #fff;
+
+        .classify-title {
+
+        }
+
+        .classify-ul {
+            margin-top: 10px;
+            display: flex;
+
+            .classify-li {
+                width: 25%;
+
+                .classify-img {
+                    width: 74px;
+                    height: 74px;
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .training-camp {
+        margin-top: 20px;
+        margin-left: 15px;
+    }
+
 
 </style>
