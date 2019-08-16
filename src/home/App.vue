@@ -1,17 +1,21 @@
-
 <template>
-  <div id="app">
-      <h1>首页</h1>
-  </div>
+    <div id="app">
+        <home/>
+        <!--<router-view></router-view>-->
+    </div>
 </template>
 
 <script>
-  export default {
-    components: {
+    import home from './pages/home';
+
+    export default {
+        components: {
+            home,
+        }
+
     }
-  }
 </script>
 
-<style>
+<style scoped>
 
 </style>
