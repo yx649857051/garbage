@@ -8,49 +8,60 @@
                       @click="chooseCity">{{cityData && cityData.length>0 && cityData[0].cityName}}标准</span>
             </div>
 
-
-            <div class="input-div">
-                <div class="input-search">
-                    <input class="input" type="text" v-model="val">
-                    <img class="img-search" src="../assets/home_icon0@3x.png"
-                         @click="searchClick">
+            <div class="home-main">
+                <div class="search-box">
+                    <div class="input-div">
+                    <div class="search">
+                        <input class="input" type="text" v-model="val" placeholder="输入垃圾名查找分类">
+                    </div>
+                    <div class="inp-img">
+                        <img class="img-search" src="../assets/home_icon0@3x.png"
+                        @click="searchClick"/>
+                    </div>
                 </div>
-            </div>
+                </div>
+                
 
-            <ul class="quick-search-ul">
-                <li class="quick-search-li" v-for="item in homeData.vagList" :key="item.id">
-                    <span class="quick-search-text">{{item.vname}}</span>
-                </li>
-            </ul>
+                <div class="refuse-classification">
+                    <ul class="quick-search-ul">
+                        <li class="quick-search-li" v-for="item in homeData.vagList" :key="item.id">
+                            <span class="quick-search-text">{{item.vname}}</span>
+                        </li>
+                    </ul>
 
 
-            <div class="classify-div">
-                <p class="classify-title">垃圾分类</p>
-                <ul class="classify-ul">
+                    <div class="classify-div">
+                        <p class="classify-title">垃圾分类</p>
+                        <ul class="classify-ul">
 
-                    <li class="classify-li" v-for="item in homeData.typeList" :key="item.id">
+                            <li class="classify-li" v-for="item in homeData.typeList" :key="item.id">
 
-                        <img class="classify-img" :src="item.tpic"/>
-                        <span>{{item.tname}}</span>
-                    </li>
-                </ul>
-            </div>
+                                <img class="classify-img" :src="item.tpic"/>
+                                <span>{{item.tname}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="classify-box">
+                    <div class="classify-div">
+                            <p class="classify-title">分类专题</p>
+                        <ul class="classify-ul">
 
-            <div class="classify-div">
-                <p class="classify-title">分类专题</p>
-                <ul class="classify-ul">
+                            <li class="classify-li" v-for="item in homeData.sortList" :key="item.id">
 
-                    <li class="classify-li" v-for="item in homeData.sortList" :key="item.id">
+                                <img class="classify-img" :src="item.spic"/>
+                                <span>{{item.sname}}</span>
+                            </li>
+                        </ul>
+                    </div>  
+                </div>
 
-                        <img class="classify-img" :src="item.spic"/>
-                        <span>{{item.sname}}</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="training-camp">
-                <span>训练营</span>
-                <span>去训练 ></span>
+                <div class="training-camp">
+                    <div class="training-main">
+                        <span>训练营</span>
+                        <span>去训练 ></span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -110,7 +121,6 @@
             background: url("../assets/pic-chahua@3x.png") no-repeat;
             width: 100%;
             height: 172px;
-
             .title {
                 font-size: 18px;
                 font-weight: bold;
@@ -128,79 +138,124 @@
             }
         }
 
-
-        .input-div {
-            margin-top: -20px;
-            margin-left: 20px;
-            margin-right: 20px;
-            background: #fff;
-            border: solid 1px #999;
-            border-radius: 10px;
-
-            .input-search {
-                width: 100%;
-
-
-                .input {
-                    width: 90%;
+        .home-main{
+            width: 100%;
+            .search-box{
+                width: 92%;
+                margin: 0 auto;
+                .input-div{
+                    width: 92%;
                     height: 40px;
+                    display: flex;
+                    border-radius: 8px;
+                    border:1px solid #E7E7E7;
+                    background: #fff;
+                    position: absolute;
+                    top: 18%;
+                    .search{
+                        width: 90%;
+                        .input{
+                            width: 100%;
+                            line-height: 40px;
+                            border:none;
+                            outline: none;
+                            margin-left: 10px;
+                        }
+                    }
+                    .inp-img{
+                        img{
+                            width: 18px;
+                            margin-top: 10px;
+                        }
+                    }
+            }
+            }
+            
+            .refuse-classification{
+                background: #fff;
+                overflow: hidden;
+                margin-bottom: 10px;
+                .quick-search-ul{
+                width: 92%;
+                margin: 0 auto;
+                display: flex;
+                margin-top: 30px;
+                    li{
+                        flex: 1;
+                        text-align: center;
+                        border: 1px solid #C5C5C5;
+                        border-radius: 10px;
+                        font-size: 14px;
+                        line-height: 20px;
+                        margin-right: 10px;
+                    }
                 }
+                
+            }
+            .classify-box{
+                width: 100%;
+                background: #fff;
+            }
 
-                .img-search {
-                    width: 16px;
+            .training-camp{
+                width: 100%;
+                background: #fff;
+                margin-top: 10px;
+                height: 50px;
+                .training-main{
+                    width: 92%;
+                    margin: 0 auto;
+                    span{
+                        line-height: 50px;
+                        &:nth-of-type(1){
+                            border-left: 2px solid #28BF71;
+                            padding-left: 10px;
+                            font-weight: 600;
+                        }
+                        &:nth-of-type(2){
+                            float: right;
+                            color: #6A6A6A;
+                        }
+                    }
                 }
             }
+            
         }
-
-        .quick-search-ul {
-            padding-top: 20px;
-            display: flex;
-            background: #fff;
-
-            .quick-search-li {
-                width: 25%;
-
-                .quick-search-text {
-                    color: #999;
-                    border: solid 1px #999;
-                    padding: 3px 10px;
-                    border-radius: 15px;
-                    text-align: center;
+        .classify-div{
+                    width: 92%;
+                    margin: 0 auto;
+                    padding-bottom: 30px;
+                    padding-top: 30px;
+                    .classify-title{
+                        font-family: PingFangSC;
+                        font-weight: 600;
+                        border-left: 2px solid #28BF71;
+                        padding-left: 10px;
+                        margin-bottom: 20px;
+                    }
+                    .classify-ul{
+                        display: flex;
+                        .classify-li{
+                            flex: 1;
+                            text-align: center;
+                            margin-right: 15px;
+                            span{
+                                font-family: PingFangSC;
+                                color: #6A6A6A;
+                            }
+                            &:last-of-type{
+                                margin: 0;
+                            }
+                            .classify-img{
+                                width:100%; 
+                                margin-bottom: 15px;
+                            }
+                        }
+                    }
                 }
-            }
-        }
-    }
 
-    .classify-div {
-        margin-top: 20px;
-        padding-left: 15px;
-        margin-bottom: 10px;
-        background: #fff;
 
-        .classify-title {
-
-        }
-
-        .classify-ul {
-            margin-top: 10px;
-            display: flex;
-
-            .classify-li {
-                width: 25%;
-
-                .classify-img {
-                    width: 74px;
-                    height: 74px;
-                    display: block;
-                }
-            }
-        }
-    }
-
-    .training-camp {
-        margin-top: 20px;
-        margin-left: 15px;
-    }
+}
 
 
 </style>
