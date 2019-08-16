@@ -4,7 +4,7 @@
         <h2 class="title">善待垃圾，呵护家园</h2>
 
         <div class="big-icon-div">
-            <img class='big-icon' src="./assets/logo.png">
+            <img class='big-icon' src="../assets/logo.png">
         </div>
 
 

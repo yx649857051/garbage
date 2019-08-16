@@ -1,6 +1,16 @@
 <template>
-    <div>
-        <div class="home">
+    <div class="aa">
+        <router-view></router-view>
+
+        <van-dialog
+                v-model="show"
+                title="标题"
+                show-cancel-button
+        >
+            <p @click="pClick">hhhjkalkjslfkfs</p>
+        </van-dialog>
+
+        <div class="page" id="home">
             <div class="home-bg">
                 <p class="title">环保生活 从垃圾分类开始</p>
 
@@ -11,16 +21,16 @@
             <div class="home-main">
                 <div class="search-box">
                     <div class="input-div">
-                    <div class="search">
-                        <input class="input" type="text" v-model="val" placeholder="输入垃圾名查找分类">
-                    </div>
-                    <div class="inp-img">
-                        <img class="img-search" src="../assets/home_icon0@3x.png"
-                        @click="searchClick"/>
+                        <div class="search">
+                            <input class="input" type="text" v-model="val" placeholder="输入垃圾名查找分类">
+                        </div>
+                        <div class="inp-img">
+                            <img class="img-search" src="../assets/home_icon0@3x.png"
+                                 @click="searchClick"/>
+                        </div>
                     </div>
                 </div>
-                </div>
-                
+
 
                 <div class="refuse-classification">
                     <ul class="quick-search-ul">
@@ -44,7 +54,7 @@
                 </div>
                 <div class="classify-box">
                     <div class="classify-div">
-                            <p class="classify-title">分类专题</p>
+                        <p class="classify-title">分类专题</p>
                         <ul class="classify-ul">
 
                             <li class="classify-li" v-for="item in homeData.sortList" :key="item.id">
@@ -53,7 +63,7 @@
                                 <span>{{item.sname}}</span>
                             </li>
                         </ul>
-                    </div>  
+                    </div>
                 </div>
 
                 <div class="training-camp">
@@ -64,14 +74,11 @@
                 </div>
             </div>
         </div>
-
-        <router-view></router-view>
     </div>
 </template>
 
 <script>
     import {mapState} from 'vuex';
-    import {Dialog, Toast} from 'vant';
 
     export default {
         name: "home",
@@ -79,7 +86,8 @@
 
         data() {
             return {
-                val: ''
+                val: '',
+                show: false
             }
         },
         computed: {
@@ -89,32 +97,35 @@
             }),
         },
         methods: {
+            pClick() {
+                this.show = false;
+            },
             initData() {
                 this.$store.dispatch('requestCityList');
             },
             chooseCity() {
-                Toast('城市');
-
+                this.$toast('城市');
+                this.show = true;
             },
             searchClick() {
                 // console.log("搜索");
-                Toast(this.val);
+                this.$toast(this.val);
 
                 // this.$store.dispatch('searchRequest', this.val);
                 // this.$store.dispatch('searchByType', 1);
                 // this.$store.dispatch('searchBySort', 1);
                 // this.$store.dispatch('getSearchByRubbish',1);
-                let obj ={
-                    "id":6,
-                    "rname":'手机充电器',
-                    "tname":'可回收物',
-                    "myOption":'干垃圾',
-                    "result":null
+                let obj = {
+                    "id": 6,
+                    "rname": '手机充电器',
+                    "tname": '可回收物',
+                    "myOption": '干垃圾',
+                    "result": null
 
                 }
                 let str = JSON.stringify(obj);
-                console.log('yx',str);
-                this.$store.dispatch('getTestResult',str);
+                console.log('yx', str);
+                this.$store.dispatch('getTestResult', str);
                 // this.$store.dispatch('quickSearchListRequest');
                 // this.$store.dispatch('test');
             }
@@ -132,11 +143,14 @@
 </script>
 
 <style lang="scss">
-    .home {
+
+    #home {
+
         .home-bg {
             background: url("../assets/pic-chahua@3x.png") no-repeat;
             width: 100%;
             height: 172px;
+
             .title {
                 font-size: 18px;
                 font-weight: bold;
@@ -154,49 +168,55 @@
             }
         }
 
-        .home-main{
+        .home-main {
             width: 100%;
-            .search-box{
+
+            .search-box {
                 width: 92%;
                 margin: 0 auto;
-                .input-div{
-                    width: 92%;
+
+                .input-div {
+                    width: 100%;
                     height: 40px;
                     display: flex;
                     border-radius: 8px;
-                    border:1px solid #E7E7E7;
+                    border: 1px solid #E7E7E7;
                     background: #fff;
-                    position: absolute;
-                    top: 18%;
-                    .search{
+                    margin-top: -20px;
+
+                    .search {
                         width: 90%;
-                        .input{
+
+                        .input {
                             width: 100%;
                             line-height: 40px;
-                            border:none;
+                            border: none;
                             outline: none;
                             margin-left: 10px;
                         }
                     }
-                    .inp-img{
-                        img{
+
+                    .inp-img {
+                        img {
                             width: 18px;
                             margin-top: 10px;
                         }
                     }
+                }
             }
-            }
-            
-            .refuse-classification{
+
+            .refuse-classification {
                 background: #fff;
                 overflow: hidden;
                 margin-bottom: 10px;
-                .quick-search-ul{
-                width: 92%;
-                margin: 0 auto;
-                display: flex;
-                margin-top: 30px;
-                    li{
+
+                .quick-search-ul {
+                    width: 92%;
+                    margin: 0 auto;
+                    display: flex;
+                    margin-top: 30px;
+
+                    li {
                         flex: 1;
                         text-align: center;
                         border: 1px solid #C5C5C5;
@@ -206,72 +226,84 @@
                         margin-right: 10px;
                     }
                 }
-                
+
             }
-            .classify-box{
+
+            .classify-box {
                 width: 100%;
                 background: #fff;
             }
 
-            .training-camp{
+            .training-camp {
                 width: 100%;
                 background: #fff;
                 margin-top: 10px;
                 height: 50px;
-                .training-main{
+
+                .training-main {
                     width: 92%;
                     margin: 0 auto;
-                    span{
+
+                    span {
                         line-height: 50px;
-                        &:nth-of-type(1){
+
+                        &:nth-of-type(1) {
                             border-left: 2px solid #28BF71;
                             padding-left: 10px;
                             font-weight: 600;
                         }
-                        &:nth-of-type(2){
+
+                        &:nth-of-type(2) {
                             float: right;
                             color: #6A6A6A;
                         }
                     }
                 }
             }
-            
+
         }
-        .classify-div{
-                    width: 92%;
-                    margin: 0 auto;
-                    padding-bottom: 30px;
-                    padding-top: 30px;
-                    .classify-title{
+
+        .classify-div {
+            width: 92%;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            padding-top: 30px;
+
+            .classify-title {
+                font-family: PingFangSC;
+                font-weight: 600;
+                border-left: 2px solid #28BF71;
+                padding-left: 10px;
+                margin-bottom: 20px;
+            }
+
+            .classify-ul {
+                display: flex;
+
+                .classify-li {
+                    flex: 1;
+                    text-align: center;
+                    margin-right: 15px;
+
+                    span {
                         font-family: PingFangSC;
-                        font-weight: 600;
-                        border-left: 2px solid #28BF71;
-                        padding-left: 10px;
-                        margin-bottom: 20px;
+                        color: #6A6A6A;
                     }
-                    .classify-ul{
-                        display: flex;
-                        .classify-li{
-                            flex: 1;
-                            text-align: center;
-                            margin-right: 15px;
-                            span{
-                                font-family: PingFangSC;
-                                color: #6A6A6A;
-                            }
-                            &:last-of-type{
-                                margin: 0;
-                            }
-                            .classify-img{
-                                width:100%; 
-                                margin-bottom: 15px;
-                            }
-                        }
+
+                    &:last-of-type {
+                        margin: 0;
+                    }
+
+                    .classify-img {
+                        width: 100%;
+                        margin-bottom: 15px;
                     }
                 }
+            }
+        }
 
 
-}
+    }
 
 
 </style>

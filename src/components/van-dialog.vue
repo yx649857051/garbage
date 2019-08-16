@@ -13,7 +13,7 @@
         name: "van-dialog",
         data() {
             return {
-                show: false
+                show: true
             };
         }
     }
