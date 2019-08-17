@@ -2,10 +2,11 @@
     <div class="special">
         <div class="special-header border-bottom">
             <div class="back-img">
-                <img src="../assets/home_Harmful Waste_icon01@3x.png" alt=""/>
+                <img src="../assets/home_Harmful Waste_icon01@3x.png" alt=""
+                @click="backClick"/>
             </div>
             <div class="header-title">
-                <span>分类专题</span>
+                <span>标题(等待后台字段)</span>
             </div>
         </div>
         <app-scroll class="content">
@@ -35,6 +36,11 @@
             ...mapState({
                 specialData: state => state.specialData
             })
+        },
+        methods:{
+            backClick(){
+                history.back();
+            }
         }
     }
     

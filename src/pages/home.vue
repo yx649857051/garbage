@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="training-camp">
-                    <div class="training-main">
+                    <div class="training-main" @click="trainingClick">
                         <span>训练营</span>
                         <span>去训练 ></span>
                     </div>
@@ -144,6 +144,10 @@
                     }
                 });
                 this.$store.dispatch('searchBySort',id);
+            },
+            trainingClick(){
+                console.log(111)
+                this.$router.push('/home/test');
             }
 
         },

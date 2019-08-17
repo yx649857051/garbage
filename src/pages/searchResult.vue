@@ -39,9 +39,6 @@
                 :closeOnClickOverlay="closeOnClickOverlay"
                 :showConfirmButton="showConfirmButton"
                 :showCancelButton="showCancelButton">
-            <!--<div class="dialog-div">-->
-                <!---->
-            <!--</div>-->
             <div class="dialog-content">
                 <img class="img" :src='detailData.rpic'/>
                 <p class="name-text">{{detailData.rname}}</p>
