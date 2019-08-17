@@ -6,13 +6,13 @@
                 @click="backClick"/>
             </div>
             <div class="header-title">
-                <span>标题(等待后台字段)</span>
+                <span>{{titleText}}</span>
             </div>
         </div>
         <app-scroll class="content">
             <div class="box"> 
             <ul class="box-list">
-                <li class="box-item" v-for="item in specialData" :key='item.id'>
+                <li class="box-item" v-for="item in specialList" :key='item.id'>
                     <div class="left">
                         <img class="box-img1" :src="item.rpic" alt="">
                         <span class="box-span1">{{item.rname}}</span>
@@ -34,7 +34,9 @@
         name: "special",
         computed:{
             ...mapState({
-                specialData: state => state.specialData
+                // specialData: state => state.specialData,
+                specialList:state =>state.specialData.list,
+                titleText:state =>state.specialData.sname,
             })
         },
         methods:{

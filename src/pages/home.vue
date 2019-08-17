@@ -11,21 +11,21 @@
                 title="选择城市标准"
                 show-cancel-button>
             <ul class="city-ul">
-                <li class="city-li" v-for="(item,index) in cityData" :key='index' @click="cityClick(item.id)">
+                <li class="city-li" v-for="(item,index) in cityData" :key='index' @click="cityClick(item)">
                     {{item.cityName}}
                 </li>
             </ul>
         </van-dialog>
 
         <div class="page" id="home">
-            <div class="home-bg">
-                <p class="title">环保生活 从垃圾分类开始</p>
+            <div class="top">
+                <div class="home-bg">
+                    <p class="title">环保生活 从垃圾分类开始</p>
 
-                <span class="choose-city"
-                      @click="chooseCity">{{cityData && cityData.length>0 && cityData[0].cityName}}标准</span>
-            </div>
+                    <span class="choose-city"
+                          @click="chooseCity">{{city}}</span>
 
-            <div class="home-main">
+                </div>
                 <div class="search-box">
                     <div class="input-div" @click="inputClick">
                         <div class="search">
@@ -35,49 +35,52 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="home-main">
                 <app-scroll class="content">
-                <div class="refuse-classification">
-                    <ul class="quick-search-ul">
-                        <li class="quick-search-li" v-for="item in homeData.vagList" :key="item.id">
-                            <span class="quick-search-text" @click="quickSearch(item)">{{item.vname}}</span>
-                        </li>
-                    </ul>
-
-
-                    <div class="classify-div">
-                        <p class="classify-title">垃圾分类</p>
-                        <ul class="classify-ul">
-
-                            <li class="classify-li" v-for="item in homeData.typeList" :key="item.id"
-                            @click="classifyClick(item.id)">
-
-                                <img class="classify-img" :src="item.tpic"/>
-                                <span>{{item.tname}}</span>
+                    <div class="refuse-classification">
+                        <ul class="quick-search-ul">
+                            <li class="quick-search-li" v-for="item in homeData.vagList" :key="item.id">
+                                <span class="quick-search-text" @click="quickSearch(item)">{{item.vname}}</span>
                             </li>
                         </ul>
-                    </div>
-                </div>
-                <div class="classify-box">
-                    <div class="classify-div">
-                        <p class="classify-title">分类专题</p>
-                        <ul class="classify-ul">
 
-                            <li class="classify-li" v-for="item in homeData.sortList" :key="item.id"
-                            @click="specialClick(item.id)">
 
-                                <img class="classify-img" :src="item.spic"/>
-                                <span>{{item.sname}}</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                        <div class="classify-div">
+                            <p class="classify-title">垃圾分类</p>
+                            <ul class="classify-ul">
 
-                <div class="training-camp">
-                    <div class="training-main" @click="trainingClick">
-                        <span>训练营</span>
-                        <span>去训练 ></span>
+                                <li class="classify-li" v-for="item in homeData.typeList" :key="item.id"
+                                    @click="classifyClick(item.id)">
+
+                                    <img class="classify-img" :src="item.tpic"/>
+                                    <span>{{item.tname}}</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                    <div class="classify-box">
+                        <div class="classify-div">
+                            <p class="classify-title">分类专题</p>
+                            <ul class="classify-ul">
+
+                                <li class="classify-li" v-for="item in homeData.sortList" :key="item.id"
+                                    @click="specialClick(item.id)">
+
+                                    <img class="classify-img" :src="item.spic"/>
+                                    <span>{{item.sname}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="training-camp">
+                        <div class="training-main" @click="trainingClick">
+                            <span>训练营</span>
+                            <span>去训练 ></span>
+                        </div>
+                    </div>
                 </app-scroll>
             </div>
         </div>
@@ -95,7 +98,7 @@
             return {
                 val: '',
                 show: false,
-
+                city:'深圳标准'
             }
         },
         computed: {
@@ -105,9 +108,11 @@
             }),
         },
         methods: {
-            cityClick(id) {
+            cityClick(item) {
+                console.log('hh',item.cityName)
                 this.show = false;
-                this.$store.dispatch('requestHomeData', id);
+                this.$store.dispatch('requestHomeData', item.id);
+                this.city=item.cityName + '标准';
             },
             initData() {
                 this.$store.dispatch('requestCityList');
@@ -118,34 +123,34 @@
             inputClick() {
                 this.$router.push('/home/search');
             },
-            quickSearch(item){
-                this.$store.dispatch('searchRequest',item.vname);
+            quickSearch(item) {
+                this.$store.dispatch('searchRequest', item.vname);
                 this.$router.push({
-                    name:'result',
-                    params:{
-                        id:item.id
+                    name: 'result',
+                    params: {
+                        id: item.id
                     }
                 });
             },
-            classifyClick(id){
+            classifyClick(id) {
                 this.$router.push({
-                    name:'classify',
-                    params:{
+                    name: 'classify',
+                    params: {
                         id
                     }
                 });
-                this.$store.dispatch('searchByType',id);
+                this.$store.dispatch('searchByType', id);
             },
-            specialClick(id){
+            specialClick(id) {
                 this.$router.push({
-                    name:'special',
-                    params:{
+                    name: 'special',
+                    params: {
                         id
                     }
                 });
-                this.$store.dispatch('searchBySort',id);
+                this.$store.dispatch('searchBySort', id);
             },
-            trainingClick(){
+            trainingClick() {
                 console.log(111)
                 this.$router.push('/home/test');
             }
@@ -163,15 +168,16 @@
 </script>
 
 <style lang="scss">
-    .dialog{
+    .dialog {
         width: 281px;
         height: 239px;
         border-radius: 10px;
-        .van-dialog__header{
+
+        .van-dialog__header {
             font-family: PingFangSC;
             font-weight: 700;
             font-size: 18px;
-            color:#333;
+            color: #333;
             letter-spacing: 1px;
             margin-top: -10px;
             margin-bottom: 10px;
@@ -179,56 +185,65 @@
             text-decoration: none;
         }
     }
-    .city-ul{
+
+    .city-ul {
         display: flex;
         flex-wrap: wrap;
-        justify-content:space-between;
-        .city-li{
+        justify-content: space-between;
+
+        .city-li {
             text-align: center;
             width: 30%;
-            margin:8px 28px;
+            margin: 8px 28px;
             background: rgb(139, 138, 138);
             border-radius: 6px;
             font-size: 14px;
             line-height: 30px;
             color: #fff;
-            &:nth-of-type(5){
+
+            &:nth-of-type(5) {
                 margin-bottom: 15px;
             }
         }
     }
+
     #home {
 
         width: 100%;
         height: 100%;
         overflow: hidden;
-        .home-bg {
-            background: url("../assets/pic-chahua@3x.png") no-repeat;
-            width: 100%;
-            height: 172px;
-            .title {
-                font-size: 18px;
-                font-weight: bold;
-                color: #fff;
-                padding: 50px 0 15px 15px;
+
+        .top {
+            background: #fff;
+            padding-bottom: 20px;
+            .home-bg {
+                background: url("../assets/pic-chahua@3x.png") no-repeat;
+                width: 100%;
+                height: 172px;
+
+                .title {
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #fff;
+                    padding: 50px 0 15px 15px;
+                }
+
+                .choose-city {
+                    background: #fff;
+                    font-size: 14px;
+                    color: #2BB96D;
+                    padding: 3px 10px;
+                    border-radius: 27px;
+                    margin-left: 15px;
+                }
+
+
             }
 
-            .choose-city {
-                background: #fff;
-                font-size: 14px;
-                color: #2BB96D;
-                padding: 3px 10px;
-                border-radius: 27px;
-                margin-left: 15px;
-            }
-        }
-
-        .home-main {
-            width: 100%;
-            
             .search-box {
                 width: 92%;
                 margin: 0 auto;
+
                 .input-div {
                     width: 100%;
                     height: 40px;
@@ -238,7 +253,7 @@
                     border: 1px solid #E7E7E7;
                     background: #fff;
                     margin-top: -20px;
-                    
+
                     .search {
                         width: 90%;
 
@@ -253,6 +268,11 @@
 
                 }
             }
+        }
+
+
+        .home-main {
+            width: 100%;
 
             .refuse-classification {
                 background: #fff;
@@ -263,7 +283,8 @@
                     width: 92%;
                     margin: 0 auto;
                     display: flex;
-                    margin-top: 30px;
+                    margin-top: 10px;
+
                     li {
                         flex: 1;
                         text-align: center;
@@ -355,13 +376,13 @@
 
     }
 
-    .content{
-           width: 100%;
-           position: absolute;
-           top:200px;
-           left:0;
-           bottom:0;
-       }
+    .content {
+        width: 100%;
+        position: absolute;
+        top: 200px;
+        left: 0;
+        bottom: 0;
+    }
 
 
 </style>

@@ -1,12 +1,12 @@
 <template>
     <div class="test">
-        <div class="special-header border-bottom">
+        <div class="test-header border-bottom">
             <div class="back-img">
                 <img src="../assets/home_Harmful Waste_icon01@3x.png" alt=""
                      @click="backClick"/>
             </div>
             <div class="header-title">
-                <span>标题(等待后台字段)</span>
+                <span>自测考试</span>
             </div>
         </div>
     </div>
@@ -14,11 +14,16 @@
 
 <script>
     export default {
-        name: "test"
+        name: "test",
+        methods:{
+            backClick(){
+                history.back();
+            }
+        }
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .test {
         width: 100%;
         height: 100%;
@@ -26,12 +31,10 @@
         position: absolute;
         z-index: 100;
 
-        .special-header {
+        .test-header {
             width: 100%;
             height: 44px;
             background: #fff;
-            overflow: hidden;
-            margin-top: 20px;
             overflow: hidden;
 
             .back-img {

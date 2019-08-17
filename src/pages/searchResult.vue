@@ -16,7 +16,7 @@
 
             <div class="box">
                 <ul class="box-list">
-                    <li class="box-item" v-for="item in searchResultData"
+                    <li class="box-item" v-for="item in searchResultList"
                         @click="itemClick(item.id)">
                         <div class="left">
                             <img class="box-img1" src="../assets/home_icon1@3x.png" alt="">
@@ -64,7 +64,8 @@
         },
         computed: {
             ...mapState({
-                searchResultData: state => state.searchResultData,
+                searchResultList: state => state.searchResultData.list,
+                searchText: state => state.searchResultData.rname,
                 detailData: state => state.detailData,
             }),
         },
@@ -83,13 +84,13 @@
 
         watch: {
             detailData() {
-                console.log('数据来了')
                 this.show = true;
-            }
+            },
+            searchText(){
+                this.inputValue = this.searchText;
+            },
+
         },
-        destroyed() {
-            console.log('destroyed')
-        }
     }
 </script>
 
@@ -98,30 +99,29 @@
         width: 280px;
         border-radius: 10px;
 
-            .dialog-content {
-                width: 100%;
+        .dialog-content {
+            width: 100%;
 
-                .img {
-                    display: block;
-                    width: 74px;
-                    height: 74px;
-                    margin: 20px auto;
-                }
-
-                .name-text {
-                    text-align: center;
-                }
-
-                .desc-text {
-                    padding: 20px;
-                    color: #6f6f6f;
-                    text-align: center;
-                }
-
+            .img {
+                display: block;
+                width: 74px;
+                height: 74px;
+                margin: 20px auto;
             }
 
-    }
+            .name-text {
+                text-align: center;
+            }
 
+            .desc-text {
+                padding: 20px;
+                color: #6f6f6f;
+                text-align: center;
+            }
+
+        }
+
+    }
 
 
     .search-result {

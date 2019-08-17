@@ -42,6 +42,7 @@ export default new Vuex.Store({
     },
     actions: {
         async requestHomeData(context, params) {
+            context.commit('setHomeData', []);
             let data = await get(api.HOME_URL, {'cityId': params});
             console.log('homeData', data)
             context.commit('setHomeData', data.data);
@@ -62,6 +63,7 @@ export default new Vuex.Store({
 
         //关键字搜索 传用户输入的关键字
         async searchRequest(context, params) {
+            context.commit('setSearchResultData', []);
             let data = await get(api.HOME_SEARCH, {'rname': params});
             console.log('searchRequest', data);
             context.commit('setSearchResultData', data.data);
