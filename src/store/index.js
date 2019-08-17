@@ -21,11 +21,13 @@ export default new Vuex.Store({
     actions: {
         async requestHomeData(context, params) {
             let data = await get(api.HOME_URL, {'cityId': params});
+            console.log('homeData',data)
             context.commit('setHomeData', data.data);
         },
 
         async requestCityList(context) {
             let data = await get(api.HOME_CITY_LIST);
+            console.log('city',data)
             context.commit('setCityData', data.data);
         },
 

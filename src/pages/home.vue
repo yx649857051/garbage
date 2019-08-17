@@ -1,13 +1,19 @@
 <template>
-    <div class="aa">
-        <router-view></router-view>
+    <div>
+
+        <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
+            <router-view></router-view>
+        </transition>
 
         <van-dialog
                 v-model="show"
-                title="标题"
-                show-cancel-button
-        >
-            <p @click="pClick">hhhjkalkjslfkfs</p>
+                title="选择城市标准"
+                show-cancel-button>
+            <ul class="city-ul">
+                <li class="city-li" v-for="item in cityData" @click="cityClick(item.id)">
+                    {{item.cityName}}
+                </li>
+            </ul>
         </van-dialog>
 
         <div class="page" id="home">
@@ -20,14 +26,11 @@
 
             <div class="home-main">
                 <div class="search-box">
-                    <div class="input-div">
+                    <div class="input-div" @click="inputClick">
                         <div class="search">
                             <input class="input" type="text" v-model="val" placeholder="输入垃圾名查找分类">
                         </div>
-                        <div class="inp-img">
-                            <img class="img-search" src="../assets/home_icon0@3x.png"
-                                 @click="searchClick"/>
-                        </div>
+
                     </div>
                 </div>
 
@@ -87,7 +90,8 @@
         data() {
             return {
                 val: '',
-                show: false
+                show: false,
+
             }
         },
         computed: {
@@ -97,43 +101,24 @@
             }),
         },
         methods: {
-            pClick() {
+            cityClick(id) {
                 this.show = false;
+                this.$store.dispatch('requestHomeData', id);
             },
             initData() {
                 this.$store.dispatch('requestCityList');
             },
             chooseCity() {
-                this.$toast('城市');
                 this.show = true;
             },
-            searchClick() {
-                // console.log("搜索");
-                this.$toast(this.val);
-
-                // this.$store.dispatch('searchRequest', this.val);
-                // this.$store.dispatch('searchByType', 1);
-                // this.$store.dispatch('searchBySort', 1);
-                // this.$store.dispatch('getSearchByRubbish',1);
-                let obj = {
-                    "id": 6,
-                    "rname": '手机充电器',
-                    "tname": '可回收物',
-                    "myOption": '干垃圾',
-                    "result": null
-
-                }
-                let str = JSON.stringify(obj);
-                console.log('yx', str);
-                this.$store.dispatch('getTestResult', str);
-                // this.$store.dispatch('quickSearchListRequest');
-                // this.$store.dispatch('test');
+            inputClick() {
+                this.$router.push('/home/search');
             }
 
         },
         watch: {
             cityData() {
-                this.$store.dispatch('requestHomeData', 5);
+                this.$store.dispatch('requestHomeData', 0);
             }
         },
         created() {
@@ -143,8 +128,18 @@
 </script>
 
 <style lang="scss">
-
+    .city-ul{
+        display: flex;
+        flex-wrap: wrap;
+        .city-li{
+            width: 50%;
+            background: #f57a7a;
+        }
+    }
     #home {
+        position: absolute;
+        top: 0;
+        left: 0;
 
         .home-bg {
             background: url("../assets/pic-chahua@3x.png") no-repeat;
@@ -196,12 +191,6 @@
                         }
                     }
 
-                    .inp-img {
-                        img {
-                            width: 18px;
-                            margin-top: 10px;
-                        }
-                    }
                 }
             }
 

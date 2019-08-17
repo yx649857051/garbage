@@ -4,8 +4,9 @@
             title="标题"
             show-cancel-button
     >
-        <img src="https://img.yzcdn.cn/vant/apple-3.jpg">
+        <p @click="pClick">hhhjkalkjslfkfs</p>
     </van-dialog>
+
 </template>
 
 <script>
@@ -15,6 +16,11 @@
             return {
                 show: true
             };
+        },
+        methods:{
+            pClick(){
+
+            }
         }
     }
 </script>
