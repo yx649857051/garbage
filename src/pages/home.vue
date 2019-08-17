@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-
+                <app-scroll class="content">
                 <div class="refuse-classification">
                     <ul class="quick-search-ul">
                         <li class="quick-search-li" v-for="item in homeData.vagList" :key="item.id">
@@ -72,6 +72,7 @@
                         <span>去训练 ></span>
                     </div>
                 </div>
+                </app-scroll>
             </div>
         </div>
     </div>
@@ -145,7 +146,9 @@
 <style lang="scss">
 
     #home {
-
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
         .home-bg {
             background: url("../assets/pic-chahua@3x.png") no-repeat;
             width: 100%;
@@ -304,6 +307,14 @@
 
 
     }
+
+    .content{
+           width: 100%;
+           position: absolute;
+           top:200px;
+           left:0;
+           bottom:0;
+       }
 
 
 </style>
