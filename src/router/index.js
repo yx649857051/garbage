@@ -33,12 +33,14 @@ const routes = [
             },
             //垃圾分页详情页
             {
-                path: 'classify',
+                name:'classify',
+                path: 'classify/:id',
                 component: () => import('../pages/classify'),
             },
             //分类专题详情页
             {
-                path: 'special',
+                name:'special',
+                path: 'special:/id',
                 component: () => import('../pages/special'),
             },
             //测试页面
