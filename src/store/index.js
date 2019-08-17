@@ -9,6 +9,7 @@ export default new Vuex.Store({
     state: {
         homeData: [],
         cityData: [],
+        searchData:[]
     },
     mutations: {
         setHomeData(state, params) {
@@ -32,7 +33,6 @@ export default new Vuex.Store({
         //快捷搜索列表
         async quickSearchListRequest(context) {
             let data = await post(api.HOME_FAST_SEARCH);
-            console.log(data);
         },
 
         //关键字搜索 传用户输入的关键字

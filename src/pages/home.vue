@@ -218,15 +218,16 @@
                     margin: 0 auto;
                     display: flex;
                     margin-top: 30px;
-
                     li {
                         flex: 1;
                         text-align: center;
                         border: 1px solid #C5C5C5;
-                        border-radius: 10px;
+                        border-radius: 12px;
                         font-size: 14px;
+                        padding: 2px 0;
                         line-height: 20px;
                         margin-right: 10px;
+                        color: #555;
                     }
                 }
 

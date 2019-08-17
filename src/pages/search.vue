@@ -12,7 +12,7 @@
         <div class="hot-box">
             <p class="hot-title">热门搜索</p>
             <ul class="hot-list">
-                <li class="hot-item" v-for="(i,index) in 20" :key="index">{{i}}哈哈哈</li>
+                <li class="hot-item" v-for="(i,index) in 20" :key="index">{{i}}哈哈哈哈</li>
             </ul>
         </div>
         
@@ -23,13 +23,14 @@
     export default {
         name: "search"
     }
+    
 </script>
 
 <style lang="scss" scoped>
     .subpage{
         width: 100%;
         height: 100%;
-        background: palevioletred;
+        background: #fff;
         position: absolute;
         z-index: 100;
         .search-header{
@@ -76,18 +77,28 @@
             background: #fff;
             overflow: hidden;
             .hot-title{
-                margin-top: 10px;
+                margin-top: 15px;
                 font-weight: 550;
+                color: #333;
+                font-size: 14px;
             }
             .hot-list{
-                margin-top: 10px;
+                width: 100%;
+                margin-top: 15px;
                 display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
                 .hot-item{
+                    font-size: 12px;
+                    width: 22%;
                     box-sizing: border-box;
                     text-align: center;
                     border: 1px solid #EFEFEF;
-                    margin: 10px;
+                    // margin-right: 2px;
+                    margin-bottom: 15px;
                     border-radius: 10px;
+                    padding: 3px 0;
+                    color: #666666
                 }
             }
         }
