@@ -47,7 +47,8 @@
                         <p class="classify-title">垃圾分类</p>
                         <ul class="classify-ul">
 
-                            <li class="classify-li" v-for="item in homeData.typeList" :key="item.id">
+                            <li class="classify-li" v-for="item in homeData.typeList" :key="item.id"
+                            @click="classifyClick(item.id)">
 
                                 <img class="classify-img" :src="item.tpic"/>
                                 <span>{{item.tname}}</span>
@@ -123,6 +124,15 @@
                         id:item.id
                     }
                 });
+            },
+            classifyClick(id){
+                this.$router.push({
+                    name:'classify',
+                    params:{
+                        id
+                    }
+                });
+                this.$store.dispatch('searchByType',id);
             }
 
         },

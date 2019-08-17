@@ -9,11 +9,10 @@ export default new Vuex.Store({
     state: {
         homeData: [],
         cityData: [],
-<<<<<<< HEAD
-        resultData:[],
-=======
-        searchData:[]
->>>>>>> 840e007a2d9cddaa024f2972e08894ccb8f09cb0
+        searchResultData: [],
+        searchData: [],
+        hotSearchData: [],
+        classifyResultData:[],
     },
     mutations: {
         setHomeData(state, params) {
@@ -22,39 +21,48 @@ export default new Vuex.Store({
         setCityData(state, params) {
             state.cityData = params;
         },
-        setResultData(state,params){
-            state.resultData = params;
+        setSearchResultData(state, params) {
+            state.searchResultData = params;
+        },
+        setHotResultData(state, params) {
+            state.hotSearchData = params;
+        },
+        setClassifyResultData(state,params){
+            state.classifyResultData = params;
         }
     },
     actions: {
         async requestHomeData(context, params) {
             let data = await get(api.HOME_URL, {'cityId': params});
-            console.log('homeData',data)
+            console.log('homeData', data)
             context.commit('setHomeData', data.data);
         },
 
         async requestCityList(context) {
             let data = await get(api.HOME_CITY_LIST);
-            console.log('city',data)
+            console.log('city', data)
             context.commit('setCityData', data.data);
         },
 
         //快捷搜索列表
         async quickSearchListRequest(context) {
             let data = await post(api.HOME_FAST_SEARCH);
+            console.log('hotResultData', data);
+            context.commit('setHotResultData', data.data);
         },
 
         //关键字搜索 传用户输入的关键字
         async searchRequest(context, params) {
             let data = await get(api.HOME_SEARCH, {'rname': params});
-            console.log('searchRequest',data);
-            context.commit('setResultData', data.data);
+            console.log('searchRequest', data);
+            context.commit('setSearchResultData', data.data);
         },
 
         //分类查询 传id
         async searchByType(context, params) {
             let data = await get(api.HOME_SEARCH_BY_TYPE, {'typeId': params});
-            console.log(data);
+            console.log("searchByType",data);
+            context.commit('setClassifyResultData', data.data);
         },
 
         //专题查询 传id
@@ -78,7 +86,7 @@ export default new Vuex.Store({
         //获取测试结果
         async getTestResult(context, params) {
             let data = await post(api.HOME_TEST_PANDUAN, {
-                   'eList':params
+                    'eList': params
                 }
             );
             console.log(data);

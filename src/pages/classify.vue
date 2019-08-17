@@ -3,8 +3,14 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex';
     export default {
-        name: "classify"
+        name: "classify",
+        computed: {
+            ...mapState({
+                classifyResultData: state => state.classifyResultData,
+            }),
+        },
     }
 </script>
 
