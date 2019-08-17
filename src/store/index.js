@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import api from '../request/api';
 import {get, post} from '../request'
+import { connect } from 'net';
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
         searchResultData: [],
         hotSearchData: [],
         classifyResultData:[],
+        specialData:[]
     },
     mutations: {
         setHomeData(state, params) {
@@ -28,6 +30,9 @@ export default new Vuex.Store({
         },
         setClassifyResultData(state,params){
             state.classifyResultData = params;
+        },
+        setSpecialData(state,params){
+            state.specialData = params;
         }
     },
     actions: {
@@ -68,6 +73,7 @@ export default new Vuex.Store({
         async searchBySort(context, params) {
             let data = await get(api.HOME_SEARCH_BY_SORT, {'sortId': params});
             console.log(data);
+            context.commit('setSpecialData',data.data);
         },
 
         //获取测试题

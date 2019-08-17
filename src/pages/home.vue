@@ -61,7 +61,8 @@
                         <p class="classify-title">分类专题</p>
                         <ul class="classify-ul">
 
-                            <li class="classify-li" v-for="item in homeData.sortList" :key="item.id">
+                            <li class="classify-li" v-for="item in homeData.sortList" :key="item.id"
+                            @click="specialClick(item.id)">
 
                                 <img class="classify-img" :src="item.spic"/>
                                 <span>{{item.sname}}</span>
@@ -133,6 +134,15 @@
                     }
                 });
                 this.$store.dispatch('searchByType',id);
+            },
+            specialClick(id){
+                this.$router.push({
+                    name:'special',
+                    params:{
+                        id
+                    }
+                });
+                this.$store.dispatch('searchBySort',id);
             }
 
         },
@@ -191,7 +201,6 @@
             background: url("../assets/pic-chahua@3x.png") no-repeat;
             width: 100%;
             height: 172px;
-
             .title {
                 font-size: 18px;
                 font-weight: bold;
@@ -202,29 +211,29 @@
             .choose-city {
                 background: #fff;
                 font-size: 14px;
-                color: #7dd1a8;
+                color: #2BB96D;
                 padding: 3px 10px;
-                border-radius: 15px;
+                border-radius: 27px;
                 margin-left: 15px;
             }
         }
 
         .home-main {
             width: 100%;
-
+            
             .search-box {
                 width: 92%;
                 margin: 0 auto;
-
                 .input-div {
                     width: 100%;
                     height: 40px;
                     display: flex;
-                    border-radius: 8px;
+                    font-size: 14px;
+                    border-radius: 6px;
                     border: 1px solid #E7E7E7;
                     background: #fff;
                     margin-top: -20px;
-
+                    
                     .search {
                         width: 90%;
 
