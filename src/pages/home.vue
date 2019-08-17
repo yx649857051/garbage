@@ -6,6 +6,7 @@
         </transition>
 
         <van-dialog
+                class="dialog"
                 v-model="show"
                 title="选择城市标准"
                 show-cancel-button>
@@ -148,7 +149,7 @@
 </script>
 
 <style lang="scss">
-    .van-dialog{
+    .dialog{
         width: 281px;
         height: 239px;
         border-radius: 10px;

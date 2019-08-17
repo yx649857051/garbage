@@ -3,7 +3,7 @@
         <div class="search-header">
             <div class="search-box">
                 <img class="return-img" src="../assets/Hot Search_Return_icon@3x.png" alt=""
-                @click="returnClick">
+                     @click="returnClick">
                 <div class="search-main">
                     <input class="search-inp" type="text" ref='input' placeholder="搜索垃圾所属分类">
                     <img class="search-img" @click="searchClick"
@@ -40,21 +40,21 @@
         created() {
             this.$store.dispatch('quickSearchListRequest');
         },
-        methods:{
+        methods: {
 
-            hotClick(item){
-                this.$store.dispatch('searchRequest',item.vname);
+            hotClick(item) {
+                this.$store.dispatch('searchRequest', item.vname);
                 this.$router.push({
-                    name:'result',
-                    params:{
-                        id:item.id
+                    name: 'result',
+                    params: {
+                        id: item.id
                     }
                 });
             },
-            searchClick(){
-                this.hotClick({vname:this.$refs.input.value,id:0});
+            searchClick() {
+                this.hotClick({vname: this.$refs.input.value, id: 0});
             },
-            returnClick(){
+            returnClick() {
                 history.back();
             }
         }
@@ -88,6 +88,7 @@
                     height: 20px;
                     margin: 20px 20px;
                 }
+
                 .search-main {
                     width: 294px;
                     width: 82%;
@@ -122,7 +123,7 @@
 
             .hot-title {
                 margin-top: 15px;
-                font-weight: 550;
+                font-weight: 500;
                 color: #333;
                 font-size: 14px;
             }

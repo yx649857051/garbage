@@ -12,6 +12,7 @@ export default new Vuex.Store({
         searchResultData: [],
         hotSearchData: [],
         classifyResultData:[],
+        detailData:[]
     },
     mutations: {
         setHomeData(state, params) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
         },
         setClassifyResultData(state,params){
             state.classifyResultData = params;
+        },
+        setDetailData(state,params){
+            state.detailData = params;
         }
     },
     actions: {
@@ -77,13 +81,14 @@ export default new Vuex.Store({
         },
 
         //点击模糊查询列表的某一项
-        async getSearchByRubbish(context, params) {
+        async searchByRubbish(context, params) {
             let data = await get(api.HOME_SEARCH_BY_RUBBISHID, {'id': params});
             console.log(data);
+            context.commit('setDetailData', data.data);
         },
 
         //获取测试结果
-        async getTestResult(context, params) {
+        async testResult(context, params) {
             let data = await post(api.HOME_TEST_PANDUAN, {
                     'eList': params
                 }

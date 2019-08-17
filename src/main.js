@@ -15,6 +15,8 @@ import 'vant/lib/index.css';
 Vue.use(Vant);
 Vue.component(AppScroll.name, AppScroll);
 
+Vue.prototype.$center = new Vue();
+
 new Vue({
     render: h => h(App),
     store,

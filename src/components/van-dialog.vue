@@ -1,25 +1,35 @@
 <template>
     <van-dialog
+            class="van-dialog"
             v-model="show"
-            title="标题"
-            show-cancel-button
+            closeOnClickOverlay="true"
     >
-        <p @click="pClick">hhhjkalkjslfkfs</p>
-    </van-dialog>
 
+        <div class="dialog-div">
+            <div class="dialog-content">
+                <p>1111111</p>
+                <!--<img class="img" :src='detailData.rpic'/>-->
+                <!--<p class="name-text">{{detailData.rname}}</p>-->
+                <!--<p class="desc-text">{{detailData.rdesc}}</p>-->
+            </div>
+        </div>
+    </van-dialog>
 </template>
 
 <script>
     export default {
         name: "van-dialog",
+        // props: ['show', 'detailData'],
         data() {
             return {
                 show: true
             };
         },
-        methods:{
-            pClick(){
-
+        mounted(){
+            this.a();
+        },
+        methods: {
+            a() {
             }
         }
     }
