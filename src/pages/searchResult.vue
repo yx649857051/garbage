@@ -58,10 +58,11 @@
                     margin: 20px 20px;
                 }
                 .search-main{
-                    width: 80%;
+                    width: 82%;
                     height: 37px;
                     background: #fff;
-                    margin:10px;
+                    margin: 10px 0;
+                    margin-left: 0;
                     display: flex;
                     border-radius: 5px;
                     .search-inp{
@@ -96,6 +97,7 @@
                         .box-img1{
                             width: 30px;
                             padding: 10px;
+                            padding-left:15px; 
                         }
                     }
                     .right{

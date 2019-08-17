@@ -162,7 +162,7 @@
             text-align: center;
             width: 30%;
             margin:8px 28px;
-            background: rgb(113, 113, 113);
+            background: rgb(139, 138, 138);
             border-radius: 6px;
             font-size: 14px;
             line-height: 30px;

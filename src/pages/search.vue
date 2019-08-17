@@ -50,7 +50,7 @@
                     margin: 20px 20px;
                 }
                 .search-main{
-                    width: 294px;
+                    width: 82%;
                     height: 37px;
                     background: #fff;
                     margin: 10px 0;
