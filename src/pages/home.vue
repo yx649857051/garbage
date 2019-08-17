@@ -34,11 +34,11 @@
                     </div>
                 </div>
 
-
+                <app-scroll class="content">
                 <div class="refuse-classification">
                     <ul class="quick-search-ul">
                         <li class="quick-search-li" v-for="item in homeData.vagList" :key="item.id">
-                            <span class="quick-search-text">{{item.vname}}</span>
+                            <span class="quick-search-text" @click="quickSearch(item)">{{item.vname}}</span>
                         </li>
                     </ul>
 
@@ -75,6 +75,7 @@
                         <span>去训练 ></span>
                     </div>
                 </div>
+                </app-scroll>
             </div>
         </div>
     </div>
@@ -113,6 +114,15 @@
             },
             inputClick() {
                 this.$router.push('/home/search');
+            },
+            quickSearch(item){
+                this.$store.dispatch('searchRequest',item.vname);
+                this.$router.push({
+                    name:'result',
+                    params:{
+                        id:item.id
+                    }
+                });
             }
 
         },
@@ -137,10 +147,10 @@
         }
     }
     #home {
-        position: absolute;
-        top: 0;
-        left: 0;
 
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
         .home-bg {
             background: url("../assets/pic-chahua@3x.png") no-repeat;
             width: 100%;
@@ -293,6 +303,14 @@
 
 
     }
+
+    .content{
+           width: 100%;
+           position: absolute;
+           top:200px;
+           left:0;
+           bottom:0;
+       }
 
 
 </style>

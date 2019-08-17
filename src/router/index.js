@@ -27,7 +27,8 @@ const routes = [
             },
             //搜索结果页
             {
-                path: 'result',
+                name:'result',
+                path: 'result/:id',
                 component: () => import('../pages/searchResult'),
             },
             //垃圾分页详情页

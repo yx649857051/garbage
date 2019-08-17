@@ -1,6 +1,8 @@
 <template>
     <div class="search-result">
-        <h1>搜索结果页</h1>
+        <div>
+
+        </div>
     </div>
 </template>
 

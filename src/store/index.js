@@ -9,6 +9,7 @@ export default new Vuex.Store({
     state: {
         homeData: [],
         cityData: [],
+        resultData:[],
     },
     mutations: {
         setHomeData(state, params) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
         },
         setCityData(state, params) {
             state.cityData = params;
+        },
+        setResultData(state,params){
+            state.resultData = params;
         }
     },
     actions: {
@@ -40,7 +44,8 @@ export default new Vuex.Store({
         //关键字搜索 传用户输入的关键字
         async searchRequest(context, params) {
             let data = await get(api.HOME_SEARCH, {'rname': params});
-            console.log(data);
+            console.log('searchRequest',data);
+            context.commit('setResultData', data.data);
         },
 
         //分类查询 传id
