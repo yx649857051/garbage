@@ -12,7 +12,7 @@
         <div class="hot-box">
             <p class="hot-title">热门搜索</p>
             <ul class="hot-list">
-                <li class="hot-item" v-for="(i,index) in 20" :key="index">{{i}}哈哈哈哈</li>
+                <li class="hot-item" v-for="(i,index) in 20" :key='index'>{{i}}哈哈哈哈</li>
             </ul>
         </div>
         

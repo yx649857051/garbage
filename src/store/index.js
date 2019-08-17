@@ -9,11 +9,8 @@ export default new Vuex.Store({
     state: {
         homeData: [],
         cityData: [],
-<<<<<<< HEAD
         resultData:[],
-=======
         searchData:[]
->>>>>>> 840e007a2d9cddaa024f2972e08894ccb8f09cb0
     },
     mutations: {
         setHomeData(state, params) {
