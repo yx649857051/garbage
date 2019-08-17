@@ -11,8 +11,9 @@ export default new Vuex.Store({
         cityData: [],
         searchResultData: [],
         hotSearchData: [],
-        classifyResultData:[],
-        detailData:[]
+        classifyResultData: [],
+        detailData: [],
+        specialData: []
     },
     mutations: {
         setHomeData(state, params) {
@@ -27,12 +28,17 @@ export default new Vuex.Store({
         setHotResultData(state, params) {
             state.hotSearchData = params;
         },
-        setClassifyResultData(state,params){
+        setClassifyResultData(state, params) {
             state.classifyResultData = params;
         },
-        setDetailData(state,params){
+
+        setDetailData(state, params) {
             state.detailData = params;
-        }
+        },
+        setSpecialData(state, params) {
+            state.specialData = params;
+
+        },
     },
     actions: {
         async requestHomeData(context, params) {
@@ -64,7 +70,7 @@ export default new Vuex.Store({
         //分类查询 传id
         async searchByType(context, params) {
             let data = await get(api.HOME_SEARCH_BY_TYPE, {'typeId': params});
-            console.log("searchByType",data);
+            console.log("searchByType", data);
             context.commit('setClassifyResultData', data.data);
         },
 
@@ -72,6 +78,7 @@ export default new Vuex.Store({
         async searchBySort(context, params) {
             let data = await get(api.HOME_SEARCH_BY_SORT, {'sortId': params});
             console.log(data);
+            context.commit('setSpecialData', data.data);
         },
 
         //获取测试题
