@@ -10,7 +10,7 @@
                 title="选择城市标准"
                 show-cancel-button>
             <ul class="city-ul">
-                <li class="city-li" v-for="item in cityData" @click="cityClick(item.id)">
+                <li class="city-li" v-for="(item,index) in cityData" :key='index' @click="cityClick(item.id)">
                     {{item.cityName}}
                 </li>
             </ul>
@@ -148,12 +148,38 @@
 </script>
 
 <style lang="scss">
+    .van-dialog{
+        width: 281px;
+        height: 239px;
+        border-radius: 10px;
+        .van-dialog__header{
+            font-family: PingFangSC;
+            font-weight: 700;
+            font-size: 18px;
+            color:#333;
+            letter-spacing: 1px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            // line-height: 24px;
+            text-decoration: none;
+        }
+    }
     .city-ul{
         display: flex;
         flex-wrap: wrap;
+        justify-content:space-between;
         .city-li{
-            width: 50%;
-            background: #f57a7a;
+            text-align: center;
+            width: 30%;
+            margin:8px 28px;
+            background: rgb(113, 113, 113);
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 30px;
+            color: #fff;
+            &:nth-of-type(5){
+                margin-bottom: 15px;
+            }
         }
     }
     #home {

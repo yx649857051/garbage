@@ -10,7 +10,6 @@ export default new Vuex.Store({
         homeData: [],
         cityData: [],
         searchResultData: [],
-        searchData: [],
         hotSearchData: [],
         classifyResultData:[],
     },

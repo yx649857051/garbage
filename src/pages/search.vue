@@ -14,11 +14,13 @@
         <div class="hot-box">
             <p class="hot-title">热门搜索</p>
             <ul class="hot-list">
+
                 <li class="hot-item" v-for="item in hotSearchData"
                     :key="item.index"
                     @click="hotClick(item)">
                     {{item.vname}}
                 </li>
+
             </ul>
         </div>
 
