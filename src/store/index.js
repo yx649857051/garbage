@@ -13,7 +13,9 @@ export default new Vuex.Store({
         hotSearchData: [],
         classifyResultData: [],
         detailData: [],
-        specialData: []
+        specialData: [],
+        testData: [],
+        answerData:[]
     },
     mutations: {
         setHomeData(state, params) {
@@ -39,6 +41,12 @@ export default new Vuex.Store({
             state.specialData = params;
 
         },
+        setTestData(state, params) {
+            state.testData = params;
+        },
+        setAnswerData(state, params) {
+            state.answerData = params;
+        }
     },
     actions: {
         async requestHomeData(context, params) {
@@ -86,7 +94,8 @@ export default new Vuex.Store({
         //获取测试题
         async getTest(context, params) {
             let data = await get(api.HOME_GET_TEST, {'sortId': params});
-            console.log(data);
+            console.log('测试题', data);
+            context.commit('setTestData', data.data);
         },
 
         //点击模糊查询列表的某一项
@@ -104,5 +113,9 @@ export default new Vuex.Store({
             );
             console.log(data);
         },
+
+        saveAnswer(context,params){
+            context.commit('setAnswerData', params);
+        }
     }
 })

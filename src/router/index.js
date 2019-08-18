@@ -48,6 +48,11 @@ const routes = [
                 path: 'test',
                 component: () => import('../pages/test'),
             },
+            //结果页面
+            {
+                path: 'answer',
+                component: () => import('../pages/answer'),
+            },
         ]
     },
 
